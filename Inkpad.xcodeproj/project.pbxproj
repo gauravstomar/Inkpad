@@ -956,6 +956,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				CD48212F1CEAF0CC0045B4DB /* Assets */,
 				6BABD85D141ED30100F7E0A9 /* Inkpad-Core */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1255,7 +1256,6 @@
 			children = (
 				6BABD884141ED30100F7E0A9 /* Additions */,
 				6BABD893141ED30100F7E0A9 /* Controllers */,
-				6BABD8AB141ED30100F7E0A9 /* Images */,
 				6BABD8D6141ED30100F7E0A9 /* livarot */,
 				6B4EF3C21878DB4300E55D19 /* CurveFit */,
 				6BABD8E6141ED30100F7E0A9 /* Model */,
@@ -1306,7 +1306,8 @@
 			children = (
 				6BABD8AC141ED30100F7E0A9 /* tools */,
 			);
-			path = Images;
+			name = Images;
+			path = "Inkpad-Core/Images";
 			sourceTree = "<group>";
 		};
 		6BABD8AC141ED30100F7E0A9 /* tools */ = {
@@ -1778,6 +1779,14 @@
 				6BE1875218FEE947006FC619 /* Stroke.strings */,
 			);
 			path = ja.lproj;
+			sourceTree = "<group>";
+		};
+		CD48212F1CEAF0CC0045B4DB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6BABD8AB141ED30100F7E0A9 /* Images */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		F43A1D69183557770032933E /* fr.lproj */ = {
