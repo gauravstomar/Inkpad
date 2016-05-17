@@ -483,7 +483,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
         return;
     }
     
-    CGContextRef    ctx = UIGraphicsGetCurrentContext();
+    CGContextRef    coreGraphicsContextReference = UIGraphicsGetCurrentContext();
     BOOL            drawingIsolatedLayer = (!controlGesture_ && drawing_.isolateActiveLayer);
     BOOL            outlineMode = drawing_.outlineMode;
     
@@ -493,7 +493,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     
     if (DEBUG_DIRTY_RECTS) {
         [[WDColor randomColor] set];
-        CGContextFillRect(ctx, rect);
+        CGContextFillRect(coreGraphicsContextReference, rect);
     }
     
     // map the clip rect back into document space
@@ -501,26 +501,26 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     invert = CGAffineTransformInvert(invert);
     rect = CGRectApplyAffineTransform(rect, invert);
     
-    CGContextSaveGState(ctx);
-    CGContextConcatCTM(ctx, transform_);
+    CGContextSaveGState(coreGraphicsContextReference);
+    CGContextConcatCTM(coreGraphicsContextReference, transform_);
     
     if (drawing_.showGrid && !drawingIsolatedLayer) {
-        [self drawGrid:ctx];
+        [self drawGrid:coreGraphicsContextReference];
     }
     
     if (outlineMode) {
         [[UIColor darkGrayColor] set];
-        CGContextSetLineWidth(ctx, self.thinWidth);
+        CGContextSetLineWidth(coreGraphicsContextReference, self.thinWidth);
     }
     
     WDLayer *activeLayer = drawing_.activeLayer;
     
     if (!controlGesture_) {
-        CGContextSaveGState(ctx);
+        CGContextSaveGState(coreGraphicsContextReference);
         
         // make sure blending modes behave correctly
         if (!outlineMode) {
-            CGContextBeginTransparencyLayer(ctx, NULL);
+            CGContextBeginTransparencyLayer(coreGraphicsContextReference, NULL);
         }
         
         for (WDLayer *layer in drawing_.layers) {
@@ -528,42 +528,42 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
                 continue;
             }
             
-            [layer renderInContext:ctx
+            [layer renderInContext:coreGraphicsContextReference
                           clipRect:rect
                           metaData:WDRenderingMetaDataMake(viewScale_, outlineMode ? WDRenderOutlineOnly : WDRenderDefault)];
         }
         
         if (drawingIsolatedLayer) {
             // gray out lower contents
-            [self drawIsolationInContext:ctx rect:rect];
+            [self drawIsolationInContext:coreGraphicsContextReference rect:rect];
             
             if (drawing_.showGrid) {
-                [self drawGrid:ctx];
+                [self drawGrid:coreGraphicsContextReference];
             }
             
             // draw the active layer
             if (activeLayer.visible) {
                 if (outlineMode) {
                     [[UIColor darkGrayColor] set];
-                    CGContextSetLineWidth(ctx, self.thinWidth);
+                    CGContextSetLineWidth(coreGraphicsContextReference, self.thinWidth);
                 }
                 
-                [activeLayer renderInContext:ctx
+                [activeLayer renderInContext:coreGraphicsContextReference
                                     clipRect:rect
                                     metaData:WDRenderingMetaDataMake(viewScale_, outlineMode ? WDRenderOutlineOnly : WDRenderDefault)];
             }
         }
         
         if (!outlineMode) {
-            CGContextEndTransparencyLayer(ctx);
+            CGContextEndTransparencyLayer(coreGraphicsContextReference);
         }
         
-        CGContextRestoreGState(ctx);
+        CGContextRestoreGState(coreGraphicsContextReference);
     }
     
-    [self drawDocumentBorder:ctx];
+    [self drawDocumentBorder:coreGraphicsContextReference];
     
-    CGContextRestoreGState(ctx);
+    CGContextRestoreGState(coreGraphicsContextReference);
 
 #ifdef WD_DEBUG
     NSLog(@"Canvas render time: %f", -[date timeIntervalSinceNow]);
