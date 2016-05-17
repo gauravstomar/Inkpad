@@ -956,8 +956,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CD48212F1CEAF0CC0045B4DB /* Assets */,
 				6BABD85D141ED30100F7E0A9 /* Inkpad-Core */,
+				6BABD91D141ED30100F7E0A9 /* SVG */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -979,6 +979,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CD48212F1CEAF0CC0045B4DB /* Assets */,
 				6B83972418A41125001D5985 /* de.lproj */,
 				6B8F091517FCE1DB00BB6F7E /* en.lproj */,
 				6BC96745183149E300F46191 /* es.lproj */,
@@ -1259,8 +1260,6 @@
 				6BABD8D6141ED30100F7E0A9 /* livarot */,
 				6B4EF3C21878DB4300E55D19 /* CurveFit */,
 				6BABD8E6141ED30100F7E0A9 /* Model */,
-				6BABD9E5141F15AB00F7E0A9 /* PLists */,
-				6BABD91D141ED30100F7E0A9 /* SVG */,
 				6BABD932141ED30100F7E0A9 /* Tools */,
 				6BABD951141ED30100F7E0A9 /* Utilities */,
 			);
@@ -1466,7 +1465,7 @@
 				6BABD9FB141F163C00F7E0A9 /* WDSVGTransformParser.m */,
 			);
 			name = SVG;
-			path = "SVG Importer";
+			path = "Inkpad-Core/SVG Importer";
 			sourceTree = "<group>";
 		};
 		6BABD932141ED30100F7E0A9 /* Tools */ = {
@@ -1522,7 +1521,8 @@
 			children = (
 				6BABD9E6141F15AC00F7E0A9 /* SVGColors.plist */,
 			);
-			path = PLists;
+			name = PLists;
+			path = "Inkpad-Core/PLists";
 			sourceTree = "<group>";
 		};
 		6BBB7CCF18B32C240018954B /* pt_PT.lproj */ = {
@@ -1784,6 +1784,7 @@
 		CD48212F1CEAF0CC0045B4DB /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6BABD9E5141F15AB00F7E0A9 /* PLists */,
 				6BABD8AB141ED30100F7E0A9 /* Images */,
 			);
 			name = Assets;
@@ -1829,7 +1830,7 @@
 				ORGANIZATIONNAME = "Taptrix, Inc.";
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = CQ46W8F62S;
+						DevelopmentTeam = X4Q8Z466M4;
 					};
 				};
 			};
